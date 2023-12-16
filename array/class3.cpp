@@ -95,8 +95,5 @@ int main()
     // transposeArr(arr, arr.size(), arr[0].size());
     // cout << "After transpose: " << endl;
     // print2DArrayCol(arr, arr.size(), arr[0].size());
-
-
-    cout << "print class!" << endl;
     return 0;
 }
