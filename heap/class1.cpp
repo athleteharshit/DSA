@@ -95,15 +95,75 @@ public:
     }
 };
 
+// Heapify way recursion
+void heapFy(int *arr, int n, int index)
+{
+    int rightIndex = 2 * index;
+    int leftIndex = 2 * index + 1;
+
+    int largestIndex = index;
+
+    if (leftIndex <= n && arr[leftIndex] > arr[largestIndex])
+    {
+        largestIndex = leftIndex;
+    }
+
+    if (rightIndex <= n && arr[rightIndex] > arr[largestIndex])
+    {
+        largestIndex = rightIndex;
+    }
+
+    if (index != largestIndex)
+    {
+        swap(arr[index], arr[largestIndex]);
+        index = largestIndex;
+        heapFy(arr, n, index);
+    }
+}
+
+void buildHeap(int arr[], int n)
+{
+    for (int i = n / 2; i > 0; i--)
+    {
+        heapFy(arr, n, i);
+    }
+}
+
+void heapSort(int arr[], int n) {
+    while(n != 1) {
+        swap(arr[1], arr[n]);
+        n--;
+        heapFy(arr, n, 1);
+    }
+}
+
 int main()
 {
-    Heap h(20);
-    h.insert(10);
-    h.insert(20);
-    h.insert(5);
-    h.insert(11);
-    h.insert(6);
+    int size = 6;
+    int arr[] = {-1, 5, 10, 15, 20, 25, 12};
+    buildHeap(arr, size);
+    for (int i = 1; i <= size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
+    heapSort(arr, size);
+    cout << "heap sort" << endl;
+      for (int i = 1; i <= size; i++)
+    {
+        cout << arr[i] << " ";
+    }
+    cout << endl;
 
-    h.print();
+
+    // Heap h(20);
+    // h.insert(10);
+    // h.insert(20);
+    // h.insert(5);
+    // h.insert(11);
+    // h.insert(6);
+
+    // h.print();
+
     return 0;
 }
