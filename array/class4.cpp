@@ -76,6 +76,38 @@ int missingNumber(vector<int> arr, int size)
     int totalSum = (size * (size + 1)) / 2;
     return totalSum - sum;
 }
+// third approach sort then compare O(n logn)
+int missingNumberSort(vector<int> arr, int size)
+{
+    int n = arr.size();
+    sort(arr.begin(), arr.end());
+
+    for (int i = 0; i < n; i++)
+    {
+        if (i == arr[i])
+            continue;
+        else
+            return i;
+    }
+    return n;
+}
+// second XOR approach
+int missingNumberXOR(vector<int> &nums)
+{
+    int n = nums.size();
+    int ans = 0;
+    for (int i = 0; i < n; i++)
+    {
+        ans ^= nums[i];
+    }
+
+    for (int i = 0; i <= n; i++)
+    {
+        ans ^= i;
+    }
+    return ans;
+}
+
 // Problem: Rearrange Array Elements by Sign 2149
 // Extra space approach
 vector<int> rearrangeArray(vector<int> &nums)
