@@ -1,7 +1,7 @@
 #include<iostream>
 using namespace std;
 
-
+// get remender using binary search
 int getQoutient(int divisor, int dividend) {
   int s = 0;
   int e = divisor;
@@ -23,6 +23,7 @@ int getQoutient(int divisor, int dividend) {
   return ans;
 }
 
+// search nearly sorted array
 int nearlySortedArr(vector<int> arr, int target) {
   int n = arr.size();
   int s = 0;
@@ -48,13 +49,45 @@ int nearlySortedArr(vector<int> arr, int target) {
   return ans;
 }
 
+// find the odd occuring element
+int firstUnpairOcc(vector<int> arr) {
+  int s = 0;
+  int e = arr.size() - 1;
+
+  while (s <= e) {
+    int mid = s + ((e - s) / 2);
+    if (s == e) {
+      return s;
+    }
+    if (mid & 1) {
+      if (arr[mid] == arr[mid - 1]) {
+        s = mid + 1;
+      } else {
+        e = mid - 1;
+      }
+    } else {
+      if (arr[mid] == arr[mid + 1]) {
+        s = mid + 2;
+      } else {
+        e = mid;
+      }
+    }
+  }
+
+  return -1;
+}
+
 
 int main() {
-  vector<int> arr = {20, 10, 30, 50, 40, 70, 60};
-  int indAns = nearlySortedArr(arr, 20);
-  cout << indAns << endl;
+    vector<int> arr = {1, 1,2, 5, 5, 7, 7, 10, 10, 9, 9};
+  int ans = firstUnpairOcc(arr);
+  cout << ans << endl;
 
-  
+  // vector<int> arr = {20, 10, 30, 50, 40, 70, 60};
+  // int indAns = nearlySortedArr(arr, 20);
+  // cout << indAns << endl;
+
+
 int divisor = -7;
   int divident = 28;
 
